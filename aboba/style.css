@@ -1,0 +1,12 @@
+.textCenter{
+    text-align: center;
+}
+
+.content{
+    margin: 0 auto;
+    text-align: center;
+}
+
+p{
+    font-size: 24px;
+}
