@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задание 3</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    
+    <form action="script.php" method="POST" class="content">
+        <h1 class="form_title">Форма</h1>
+
+        <div class="form_group">
+            <input name="name" class="form_input" placeholder=" ">
+            <label class="form_label">Имя:</label>
+        </div>
+
+        <div class="form_group">
+            <input name="email" class="form_input" placeholder=" ">
+            <label class="form_label">e-mail:</label>
+        </div>
+        
+        <div class="group">
+            <p class="text_label">Год рождения:</p>
+            <input name="datee" type="date">
+        </div>
+
+        <div class="group">
+            <p class="text_label">Пол:</p>
+            <input name = "gender" type = "radio" value = "Male">Мужской
+            <input name = "gender" type = "radio" value = "Female">Женский
+        </div>
+
+        <div class="group">
+            <p class="text_label">Количество конечностей:</p>
+            <label class="text_label">4 </label>
+            <input class="radio" name="number_limb" value="4" type="radio">
+            <labelclass="text_label">5 </label>
+            <input class="radio" name="number_limb" value="5" type="radio">
+            <label class="text_label">6 </label>
+            <input class="radio" name="number_limb" value="6" type="radio">
+        </div>
+
+        <label>
+            Cверхспособности: <br>
+            <select name="superpower[]" multiple="multiple">
+                <option value="1">бессмертие</option>
+                <option value="2" selected>прохождение сквозь стены</option>
+                <option value="3">левитация</option>
+            </select><br>
+        </label>
+        <br>
+        <div class="group">
+            <textarea name = "biography" placeholder = "Биография" class = "form_textarea"></textarea>
+        </div>
+
+        <label><input name = "Contract" value = "Checked" type = "checkbox">С контрактом ознакомлен(а)</label>
+        <br>
+        <input type = "submit" value = "Отправить данные" class = "form_btn">
+        
+    </form>
+    
+</body>
+</html>
