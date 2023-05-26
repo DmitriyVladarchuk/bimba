@@ -60,6 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         setcookie('superpowers_error', '', time() + 24 * 60 * 60);
         $messages[] = '<div class="error">Выберите суперсилы.</div>';
     }
+    if ($errors['biography']) {
+        setcookie('biography_error', '', time() + 24 * 60 * 60);
+        $messages[] = '<div class="error">Заполните биографию.</div>';
+    }
     if ($errors['Contract']) {
         setcookie('signed_error', '', time() + 24 * 60 * 60);
         $messages[] = '<div class="error">Согласитесь с условиями контракта.</div>';
@@ -107,7 +111,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $values['biography'] = empty($_COOKIE['biography_value']) ? '' : $_COOKIE['biography_value'];
         $values['Contract'] = empty($_COOKIE['signed_value']) ? '' : $_COOKIE['signed_value'];
     }
-    include('form.php');
+
+    include(dirname(__FILE__).'/form.php');
+    exit();
+    //include('form.php');
+
 } else {
     //  Если метод был POST
     //  Флаг для отлова ошибок полей
@@ -116,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         setcookie('name_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
     } else {
-        if (!preg_match('/^[a-zA-Zа-яёА-ЯЁ\s\-]+$/u', $_POST['name'])) {
+        if (!preg_match('/^[a-zA-Za-яёА-ЯЁ\s\-]+$/u', $_POST['name'])) {
             setcookie('name_error', '2', time() + 24 * 60 * 60);
             $errors = TRUE;
         } else {

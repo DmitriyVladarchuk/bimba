@@ -15,6 +15,8 @@
     $password = '6068422';
     $database = new PDO('mysql:host=localhost;dbname=u52869', $user, $password, [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     $result = $database -> query("SELECT * FROM user");
+    $resultConnector = $database -> query("SELECT * FROM connecter");
+    $row1 = $resultConnector -> fetch();
 
     //print('Вы успешно авторизовались и видите защищенные паролем данные.');
     ?>
@@ -52,7 +54,7 @@
             <td><input value=".$row["number_limb"]."></td>
             <td><input value=".$row["biography"]."></td>
             <td>
-            <a href='edit.php?rn=".$row["user_id"]."'>изменить</a>
+            <a href='edit.php?rn=".$row["user_id"]."'>изменить</a><br>
             <a href='delete.php?rn=".$row["user_id"]."'>удалить</a>
             </td>
             </tr>";
@@ -61,6 +63,33 @@
         ?>
         </tbody>
       </table>
+      <p class="fs-1">Статистика</p>
+      <?php
+      $result1 = $database -> query("SELECT * FROM connecter WHERE superpower_id  = 1");
+      $result2 = $database -> query("SELECT * FROM connecter WHERE superpower_id  = 2");
+      $result3 = $database -> query("SELECT * FROM connecter WHERE superpower_id  = 3");
+      $count1 = 0;
+      $count2 = 0;
+      $count3 = 0;
+      while($rowCon = $result1 -> fetch()){
+        if($rowCon['superpower_id'] == 1){
+          $count1++;
+        }
+      }
+      while($rowCon = $result2 -> fetch()){
+        if($rowCon['superpower_id'] == 2){
+          $count2++;
+        }
+      }
+      while($rowCon = $result3 -> fetch()){
+        if($rowCon['superpower_id'] == 3){
+          $count3++;
+        }
+      }
+      echo '<p style = "margin-bottom: 5px;">бессмертие - '.$count1.'</p>';
+      echo '<p style = "margin-bottom: 5px;">прохождение сквозь стены - '.$count2.'</p>';
+      echo '<p style = "margin-bottom: 5px;">левитация - '.$count3.'</p>';
+      ?>
       </div>
     </body>
     <?php

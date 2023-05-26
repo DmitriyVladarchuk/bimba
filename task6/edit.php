@@ -1,9 +1,9 @@
 <?php
+    $user_id = $_GET['rn'];
     $user = 'u52869';
     $password = '6068422';
     $database = new PDO('mysql:host=localhost;dbname=u52869', $user, $password, [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
-    $user_id = $_GET['rn'];
     $result = $database -> query("SELECT * FROM user WHERE user_id = '$user_id'");
     $row = $result -> fetch();
 }
@@ -14,9 +14,8 @@ $datee = $_POST['datee'];
 $gender = $_POST['gender'];
 $number_limb = $_POST['number_limb'];
 $biography = $_POST['biography'];
-$result = $database -> query("UPDATE user SET name = '$name', email = '$email', datee = '$date', gender = '$gender', number_limb = '$number_limb', biography = '$biography' WHERE user_id = $user_id");
-//$result = $database -> prepare("UPDATE user SET name = ?, email = ?, datee = ?, gender = ?, number_limb = ?, biography = ? WHERE user_id = ?");
-//$result -> execute($_POST['name'], $_POST['email'], $_POST['datee'], $_POST['gender'], $_POST['number_limb'], $_POST['biography'], $user_id);
+$result = $database -> query("UPDATE user SET name = '$name', email = '$email', datee = '$datee', gender = '$gender', number_limb = '$number_limb', biography = '$biography' WHERE user_id = '$user_id'");
+header('Location: ./admin.php');
 }
 ?>
 
